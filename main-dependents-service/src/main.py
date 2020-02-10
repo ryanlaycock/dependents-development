@@ -9,7 +9,7 @@ import traceback
 import project
 from project.api import project_blueprint
 from artifact.api import artifact_blueprint
-from ast.api import ast_blueprint
+from ast_.api import ast_blueprint
 
 queue_manager = utils.get_queue_manager()
 ast_parsing_queue_manager = utils.get_ast_queue_manager()

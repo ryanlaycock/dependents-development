@@ -26,7 +26,8 @@ def create_parse_project_task():
         'github_short_url': request.json['github_short_url'],
     }
 
-    job = q_high.enqueue(fetch_project, task.get('github_short_url'), timeout=180)
+    job = q_high.enqueue(fetch_project, task.get('github_short_url'),
+                         job_timeout=180)
 
     return jsonify({'task': task}), 200
 
@@ -78,9 +79,9 @@ def create_parse_package_task():
         driver.close()
 
     if (task.get('priority') == 'high'):
-        job = q_medium.enqueue(fetch_package, task.get('group'), task.get('artifact'), task.get('start'), task.get('end'), task.get('parent'), task.get('priority'), timeout=3600)
+        job = q_medium.enqueue(fetch_package, task.get('group'), task.get('artifact'), task.get('start'), task.get('end'), task.get('parent'), task.get('priority'), job_timeout=3600)
     else:
-        job = q_low.enqueue(fetch_package, task.get('group'), task.get('artifact'), task.get('start'), task.get('end'), task.get('parent'), task.get('priority'), timeout=3600)
+        job = q_low.enqueue(fetch_package, task.get('group'), task.get('artifact'), task.get('start'), task.get('end'), task.get('parent'), task.get('priority'), job_timeout=3600)
 
     return jsonify({'task': task}), 200
 

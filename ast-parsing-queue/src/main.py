@@ -89,7 +89,7 @@ def create_parse_project_task():
         traceback.print_exc()
         return
 
-    job = q.enqueue(parse_repo, task.get('github_short_url'), task.get('parsing_type'), timeout=7200)
+    job = q.enqueue(parse_repo, task.get('github_short_url'), task.get('parsing_type'), job_timeout=7200)
 
     return jsonify({'task': task}), 200
 

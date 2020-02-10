@@ -41,7 +41,8 @@ def get_neo4j():
     if (neo4j_password == None):
         raise ValueError('NEO4J_PASS environment variable must be set.')
 
-    return GraphDatabase.driver(neo4j_ip, auth=(neo4j_user, neo4j_password))
+    return GraphDatabase.driver(neo4j_ip, auth=(neo4j_user, neo4j_password),
+                                encrypted=False)
 
 """
 get_mysql connects to a MySQL Database and returns an instance of that

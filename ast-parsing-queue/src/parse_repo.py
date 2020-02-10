@@ -95,7 +95,7 @@ def parse_repo(git_short_url, parsing_type):
 
                         print("Exporting to neo4j")
                         # Export output to neo4j, subprocess.call returns the status code of the call
-                        export_to_neo4j_output = subprocess.call("set -eo pipefail; cat {}/output.cypher | cypher-shell -a $NEO4J_IP -u $NEO4J_USER -p $NEO4J_PASS".format(dirpath), shell=True, executable='/bin/bash')
+                        export_to_neo4j_output = subprocess.call("set -eo pipefail; cat {}/output.cypher | cypher-shell -a $NEO4J_IP -u $NEO4J_USER -p $NEO4J_PASS --encryption false".format(dirpath), shell=True, executable='/bin/bash')
                         if (export_to_neo4j_output != 0):
                                 try:
                                         driver = utils.get_neo4j()
